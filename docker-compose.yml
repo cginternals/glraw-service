@@ -1,0 +1,26 @@
+version: "3.0"
+
+services:
+  service:
+    env_file:
+      - ".docker-compose-env"
+    build:
+      context: 'service'
+      dockerfile: 'Dockerfile'
+    command: [ "uvicorn", "service.main:app", "--host", "0.0.0.0", "--port", "8236" ]
+    environment:
+      - CORS_ALLOWED_DOMAINS=*
+    ports:
+      - "8236"
+    tmpfs:
+      - /data/results
+
+  console:
+    env_file:
+      - ".docker-compose-env"
+    build:
+      context: 'service'
+      dockerfile: 'Dockerfile'
+    command: [ "/bin/sh" ]
+    tmpfs:
+      - /data/results

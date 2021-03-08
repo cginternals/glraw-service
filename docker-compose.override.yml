@@ -1,0 +1,8 @@
+version: "3.0"
+
+services:
+  service:
+    ports:
+      - "8236:8236"
+    environment:
+      - CORS_ALLOWED_DOMAINS=*
