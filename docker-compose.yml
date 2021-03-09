@@ -10,10 +10,17 @@ services:
     command: [ "uvicorn", "service.main:app", "--host", "0.0.0.0", "--port", "8236" ]
     environment:
       - CORS_ALLOWED_DOMAINS=*
+      - DISPLAY=unix$DISPLAY
+    devices:
+      - "/dev/snd:/dev/snd"
+      - "/dev/dri:/dev/dri"
     ports:
       - "8236"
     tmpfs:
       - /data/results
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    privileged: true
 
   console:
     env_file:
@@ -22,5 +29,12 @@ services:
       context: 'service'
       dockerfile: 'Dockerfile'
     command: [ "/bin/sh" ]
-    tmpfs:
-      - /data/results
+    devices:
+      - "/dev/snd:/dev/snd"
+      - "/dev/dri:/dev/dri"
+    environment:
+      - DISPLAY=unix$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./results:/data/results
+    privileged: true

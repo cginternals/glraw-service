@@ -23,4 +23,10 @@ The internally used dependencies are:
 
 ## Service
 
+The service provides the following endpoints:
+
+*
+*
+*
+
 For more documentation and immediate testing you can use the generated `/docs` and `/redoc`.
