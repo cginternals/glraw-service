@@ -22,4 +22,5 @@ services:
       context: 'service'
       dockerfile: 'Dockerfile'
     command: [ "/bin/sh" ]
+    volumes:
       - ./share:/data/share
