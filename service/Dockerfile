@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM utensils/opengl:19.0.8
 
 #
 # Basics
@@ -51,13 +51,11 @@ ADD . service
 
 ENV USERNAME=glraw-service
 ENV GLRAW_DIRECTORY=/opt/dependencies/glraw/build
-ENV RESULT_DIR=/data/results
+ENV RESULT_DIR=/data/share
 
 #
 # TEST
 #
-
-RUN apk add --no-cache mesa-dri-nouveau mesa-dri-swrast mesa-dri-vmwgfx
 
 # CMD ["uvicorn", "--host=0.0.0.0", "main:app"]
 CMD ["python3", "service/main.py"]
