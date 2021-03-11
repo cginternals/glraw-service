@@ -95,7 +95,7 @@ async def get_glraw(background_tasks: BackgroundTasks, image_file: UploadFile = 
     basename, extension = os.path.splitext(image_file.filename)
 
     image_f, image_f_name = tempfile.mkstemp(suffix=extension, text=False)
-    with open(script_f, 'w+b') as f:
+    with open(image_f, 'w+b') as f:
         shutil.copyfileobj(image_file.file, f)
 
     glraw_binary = os.path.join(GLRAW_DIRECTORY, 'glraw-cmd')
